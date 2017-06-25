@@ -1,0 +1,270 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+
+<dom-module id="main-module">
+  <template>
+    <style include="iron-flex">
+      :host {
+        --app-primary-color: #4285f4;
+        --app-secondary-color: black;
+
+        display: block;
+      }
+      
+      .body {
+        width: 100vw;
+        height: 100vh
+      }
+      
+      iron-selector {
+        width: calc(100vw - 80px);
+        height: 100vh;
+        background: url("http://www.fshalifax.com/wp-content/uploads/2016/09/Parenting-Family.jpg") no-repeat;
+        background-size: cover
+      }
+      
+      .page {
+        width: 100px;
+        height: 100vh;
+        border-right: 1px solid var(--paper-grey-300);
+        border-left: 1px solid var(--paper-grey-300);
+      }
+      
+      @keyframes expand {
+        from {width: 100px}
+        to {
+          width: 100%;
+/*          background-color: red*/
+        }
+      }
+      
+      @keyframes shrink {
+        from {width: 100%}
+        to {
+          width: 100px;
+        }
+      }
+      
+      @keyframes show {
+        from {opacity: 0.0}
+        to {
+          opacity: 1.0
+        }
+      }
+        
+      @keyframes hide {
+        from {opacity: 1.0}
+        to {
+          opacity: 0.0
+        }
+      }
+      
+      .page.iron-selected {
+        animation-name: expand;
+        animation-duration: 0.5s;
+        width: 100%;
+      }
+      
+      .page.iron-selected .content .image {
+        animation-name: show;
+        animation-duration: 0.5s;
+        opacity: 1.0
+      }
+      
+      .shrink {
+        animation-name: shrink;
+        animation-duration: 0.5s;
+      }
+      
+      .hide {
+        animation-name: hide;
+        animation-duration: 0.5s;
+      }
+      
+      .menu{
+        width: 80px;
+        height: 100vh;
+        color: var(--paper-blue-400);
+      }
+      
+      #el1 .content .image{
+        background: url("http://nerdist.com/wp-content/uploads/2015/10/Regular-Show-Cover-large.jpg") no-repeat;
+        background-size: cover
+      }
+      
+      #el2 .content .image{
+        background: url("https://s-media-cache-ak0.pinimg.com/originals/e0/4c/64/e04c6416920ba849ee0bf395f9771ac8.jpg") no-repeat;
+        background-size: cover
+      }
+      
+      #el3 .content .image{
+        background: url("https://imageresizer.static9.net.au/puMG3pqz54I-B5DP1E_R66c4rfg=/1920x0/https%3A%2F%2Fs3-ap-southeast-2.amazonaws.com%2Fvms-tv-images-prod%2F2017%2F03%2F58794%2FRESH_RegularShow1920.jpg") no-repeat;
+        background-size: cover
+      }
+      
+      .content{
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+      }       
+      
+      .image{
+        width: 100%;
+        height: 100vh;
+        opacity: 0.0
+      }
+    
+      .content iron-icon{
+        margin: 0 auto;
+        margin-top: 80vh;
+        height: 40px;
+        width: 40px;
+        margin-left: -20px;
+        position: absolute;
+        color: white;
+        z-index: 1
+      }
+      
+      .wrap {
+        text-align: center;
+/*        height: 360px*/
+      }
+      
+      .wrap div {
+        width: 80px;
+        height: 80px;
+        border-bottom: 1px solid var(--paper-grey-300);
+      }
+      
+      .brand{
+        transform: rotate(-90deg);
+        height: 40px;
+        width: 160px;
+        margin-left: -40px;
+        margin-top: 120px;
+        font-size: 12px;
+        line-height: 40px;
+/*        background-color: red*/
+      }
+    </style>
+    <div class="body layout horizontal">
+      <iron-selector class="main layout horizontal" selected="{{selectedIndex}}" >
+        <div class="page" id="el0">
+          <div class="content">
+            
+          </div>
+        </div>
+        <div class="page" id="el1">
+          <div class="content">
+            <iron-icon icon="icons:menu"></iron-icon>
+            <div class="image">
+            </div>
+          </div>
+        </div>
+        <div class="page" id="el2">
+          <div class="content">
+            <iron-icon icon="icons:account-balance"></iron-icon>
+            <div class="image">
+            </div>
+          </div>
+        </div>
+        <div class="page" id="el3">
+          <div class="content">
+             <iron-icon icon="icons:shopping-cart"></iron-icon>
+            <div class="image">
+            </div>
+          </div>
+        </div>
+      </iron-selector>
+      <paper-card class="menu layout vertical" elevation="3">
+        <div class="wrap layout vertical">
+          <div class="layout horizontal vertical center-center">
+            <iron-icon icon="icons:menu"></iron-icon>
+          </div>
+          <div class="layout horizontal vertical center-center">
+            <iron-icon icon="icons:search"></iron-icon>
+          </div>
+          <div class="layout horizontal vertical center-center">
+            <iron-icon icon="icons:settings-phone"></iron-icon>
+          </div>
+          <div class="layout horizontal vertical center-center">
+            <iron-icon icon="icons:shopping-cart"></iron-icon>
+          </div>
+        </div>
+        
+        <div class="brand">1995-2017 BI Group</div>
+      </paper-card>
+    </div>    
+  </template>
+
+  <script>
+    class MainModule extends Polymer.Element {
+
+      static get is() { return 'main-module'; }
+
+      static get properties() {
+        return {    
+          selectedIndex: {
+            type: Number,
+            value: 0
+          },
+          previousIndex:Number
+        };
+      }
+
+      static get observers() {
+        return [
+          '_selectedChanged(selectedIndex)'
+        ];
+      }
+
+      constructor() {
+        super();
+
+      }
+      
+      _selectedChanged(i){
+        
+        if(this.previousIndex == undefined){
+          this.previousIndex = i
+        }
+    
+        if(this.previousIndex != this.selectedIndex) {
+          
+          let el = this.$['el' + this.previousIndex]
+          
+          el.classList.add('shrink')
+          
+          if (el.querySelector('.image')){
+            el.querySelector('.image').classList.add('hide') 
+          }
+    
+          this.previousIndex = i
+        }
+  
+      }
+
+    }
+
+    window.customElements.define(MainModule.is, MainModule);
+  </script>
+</dom-module>
